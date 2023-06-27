@@ -1,5 +1,5 @@
-# qb-bankrobbery
-Bank Robbery For QB-Core
+# vista-bankrobbery
+Bank Robbery Script For Vista RP, forked from QB-Core
 
 # License
 

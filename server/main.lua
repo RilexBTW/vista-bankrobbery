@@ -15,6 +15,7 @@ local function TableKeysToArray(tbl)
     return array
 end
 
+--[[
 --- This will loop over the given table to check if the power stations in the table have been hit
 --- @param toLoop table
 --- @return boolean
@@ -117,6 +118,7 @@ local function IsNearPowerStation(coords, dist)
     end
     return false
 end
+--]]
 
 -- Events
 

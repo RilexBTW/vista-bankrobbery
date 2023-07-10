@@ -87,8 +87,14 @@ RegisterNetEvent('electronickit:UseElectronickit', function()
                         }, {}, {}, {}, function() -- Done
                             TriggerServerEvent('qb-bankrobbery:server:removeElectronicKit')
                             StopAnimTask(ped, "anim@gangops@facility@servers@", "hotwire", 1.0)
-                            TriggerEvent("mhacking:show")
-                            TriggerEvent("mhacking:start", math.random(5, 9), math.random(10, 15), OnHackPacificDone)
+                            exports['ps-ui']:Circle(function(success)
+                                if success then
+                                    print("success")
+                                    OnHackPacificDone(success)
+                                else
+                                    print("fail")
+                                end
+                            end, 2, 20) -- NumberOfCircles, MS
                             if copsCalled or not Config.BigBanks["pacific"]["alarm"] then return end
                             TriggerServerEvent("qb-bankrobbery:server:callCops", "pacific", 0, pos)
                             copsCalled = true

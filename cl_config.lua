@@ -20,7 +20,6 @@ end
 --- @param bank number | string
 --- @return nil
 function Config.OnHackDone(success, bank)
-    TriggerEvent('mhacking:hide')
     if not success then return end
     TriggerServerEvent('qb-bankrobbery:server:setBankState', bank)
 end
@@ -37,14 +36,23 @@ end
 --- This will be called each 10 seconds whilst drilling a safety deposit box
 --- @return nil
 function Config.OnDrillingAction()
-    TriggerServerEvent('hud:server:GainStress', math.random(4, 8))
+    TriggerServerEvent('hud:server:GainStress', math.random(2, 3))
 end
 
 --- This is triggered whenever a robbery call is made by the alarm of a bank
 --- @param message string
 --- @return nil
 function Config.OnPoliceAlert(message)
-    TriggerServerEvent("police:server:policeAlert", message)
+    if message == 'fleeca' then
+        exports['ps-dispatch']:FleecaBankRobbery(camId)
+    elseif message == 'paleto' then
+        exports['ps-dispatch']:PaletoBankRobbery(camId)
+    elseif message == 'pac' then
+        exports['ps-dispatch']:PacificBankRobbery(camId)
+    else
+        print('export not working')
+    end
+    
 end
 
 --- This is called when the user is nearby an interaction that requires said items, this will trigger the box that shows what items you need
